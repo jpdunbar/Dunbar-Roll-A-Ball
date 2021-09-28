@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Move the player
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
@@ -42,12 +43,14 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    //Apply force to the player
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
     }
 
+    //When the player touches a pickup
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
