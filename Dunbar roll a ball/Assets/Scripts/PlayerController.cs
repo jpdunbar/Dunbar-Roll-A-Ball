@@ -14,12 +14,15 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private Keyboard input;
+    private float timer = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        input = Keyboard.current;
 
         SetCountText();
         winTextObject.SetActive(false);
@@ -46,8 +49,29 @@ public class PlayerController : MonoBehaviour
     //Apply force to the player
     void FixedUpdate()
     {
+
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
+        
+        timer += Time.deltaTime;
+
+        if(timer >= 1)
+        {
+            if (input.spaceKey.isPressed && rb.useGravity == true)
+            {
+                movement = new Vector3(movementX, 20, movementY);
+                rb.AddForce(movement * speed);
+                rb.useGravity = false;
+                timer = 0;
+            }
+            else if (input.spaceKey.isPressed && rb.useGravity == false)
+            {
+                movement = new Vector3(movementX, 20, movementY);
+                rb.AddForce(movement * speed);
+                rb.useGravity = true;
+                timer = 0;
+            }
+        }
     }
 
     //When the player touches a pickup
