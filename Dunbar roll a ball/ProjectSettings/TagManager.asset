@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - PowerUp
+  - MoveEnemy
   layers:
   - Default
   - TransparentFX
