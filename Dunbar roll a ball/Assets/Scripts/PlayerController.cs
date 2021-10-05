@@ -6,16 +6,15 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
-
     private Rigidbody rb;
-    private int count;
-    private float movementX;
-    private float movementY;
+    private Vector3 initialSpawn;
     private Keyboard input;
+    private int count;
+    private float movementX, movementY;
     private float timer = 1;
+    private float speed = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
+        initialSpawn = new Vector3(0, 0.5f, 0);
     }
 
     void SetCountText()
@@ -49,6 +49,13 @@ public class PlayerController : MonoBehaviour
     //Apply force to the player
     void FixedUpdate()
     {
+
+        if(transform.position.y < -10 || transform.position.y > 20)
+        {
+            transform.position = initialSpawn;
+            transform.position = initialSpawn;
+            rb.useGravity = true;
+        }
 
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
