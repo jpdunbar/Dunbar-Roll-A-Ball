@@ -6,6 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    //Variables used
     public TextMeshProUGUI livesText;
     public GameObject winTextObject;
     public GameObject loseTextObject;
@@ -22,18 +23,24 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Setting up variables
         rb = GetComponent<Rigidbody>();
         lives = 3;
         input = Keyboard.current;
 
+        //Setting the lives text
         SetLivesText();
+        
+        //Setting the canvases to be disabled
         winTextObject.SetActive(false);
         loseTextObject.SetActive(false);
         welcomeTextObject.SetActive(true);
 
+        //The initial spawn of the player
         initialSpawn = new Vector3(-1.0f, -12.5f, 2.0f);
     }
 
+    //Changing the lives counter
     void SetLivesText()
     {
         livesText.text = "Lives: " + lives.ToString();
@@ -55,6 +62,7 @@ public class PlayerController : MonoBehaviour
     //Apply force to the player
     void FixedUpdate()
     {
+        //Restarting the player if they fall
         if(transform.position.y < -20 || transform.position.y > 20)
         {
             transform.position = initialSpawn;
@@ -73,6 +81,7 @@ public class PlayerController : MonoBehaviour
         //Limiting button presses
         if(timer >= 1)
         {
+            //Changing gravity
             if (input.spaceKey.isPressed && rb.useGravity == true)
             {
                 direction = 1.0f;
@@ -81,14 +90,14 @@ public class PlayerController : MonoBehaviour
             }
             else if (input.spaceKey.isPressed && rb.useGravity == false)
             {
-                direction = -1.0f;
+                direction = -0.5f;
                 rb.useGravity = true;
                 timer = 0;
             }
         }
 
         //In the into portion
-        if (transform.position.z < 10 && transform.position.y < -10)
+        if (transform.position.z < 10 && transform.position.y < -10 && loseTextObject.SetActive(false))
         {
             welcomeTextObject.SetActive(true);
         }
@@ -104,7 +113,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Puts up the win text
-        if (transform.position.z > 148 && transform.position.y < -10)
+        if (transform.position.z > 148 && transform.position.y < -10 && loseTextObject.SetActive(false))
         {
             winTextObject.SetActive(true);
         }

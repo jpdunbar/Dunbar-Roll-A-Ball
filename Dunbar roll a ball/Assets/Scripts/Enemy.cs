@@ -5,16 +5,18 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    //The variables used
     Vector3 movement;
     bool right = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        //The speed of the enemy
         movement = new Vector3(10.0f, 0, 0);
     }
 
-    // Update is called once per frame
+    //Move the enemy right or left
     void FixedUpdate()
     {
         if (right == true)
@@ -27,6 +29,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Move the enemy if they trigger the invisible wall
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("MoveEnemy") && right == true)
