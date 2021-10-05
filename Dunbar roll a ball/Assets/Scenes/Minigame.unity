@@ -4503,6 +4503,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   livesText: {fileID: 294432138}
   winTextObject: {fileID: 378873394}
+  loseTextObject: {fileID: 491618696}
+  welcomeTextObject: {fileID: 1683770239}
 --- !u!114 &223267524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5432,7 +5434,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 130}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378873396
 MonoBehaviour:
@@ -6080,7 +6082,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 130}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &491618698
 MonoBehaviour:
@@ -22057,7 +22059,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 130}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683770241
 MonoBehaviour:

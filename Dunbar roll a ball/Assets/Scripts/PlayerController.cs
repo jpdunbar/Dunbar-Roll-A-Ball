@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public TextMeshProUGUI livesText;
     public GameObject winTextObject;
+    public GameObject loseTextObject;
+    public GameObject welcomeTextObject;
     private Rigidbody rb;
     private Vector3 initialSpawn;
     private Keyboard input;
@@ -25,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
         SetLivesText();
         winTextObject.SetActive(false);
+        loseTextObject.SetActive(false);
+        welcomeTextObject.SetActive(true);
+
         initialSpawn = new Vector3(-1.0f, -12.5f, 2.0f);
     }
 
@@ -49,7 +54,6 @@ public class PlayerController : MonoBehaviour
     //Apply force to the player
     void FixedUpdate()
     {
-
         if(transform.position.y < -20 || transform.position.y > 20)
         {
             transform.position = initialSpawn;
@@ -80,9 +84,34 @@ public class PlayerController : MonoBehaviour
                 timer = 0;
             }
         }
+
+        if(transform.position.z < 10 && transform.position.y < -10)
+        {
+            welcomeTextObject.SetActive(true);
+        }
+        else
+        {
+            welcomeTextObject.SetActive(false);
+        }
+
+        if(lives <= 0)
+        {
+            loseTextObject.SetActive(true);
+        }
+
+        //
+        if (transform.position.z > 148 && transform.position.y < -10)
+        {
+            winTextObject.SetActive(true);
+        }
+        else
+        {
+            winTextObject.SetActive(false);
+        }
     }
 
-    //When the player touches a pickup
+    //Not using pickups for this game
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
@@ -93,4 +122,5 @@ public class PlayerController : MonoBehaviour
             SetLivesText();
         }
     }
+    */
 }
