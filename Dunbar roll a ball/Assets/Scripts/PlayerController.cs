@@ -6,12 +6,12 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI countText;
+    public TextMeshProUGUI livesText;
     public GameObject winTextObject;
     private Rigidbody rb;
     private Vector3 initialSpawn;
     private Keyboard input;
-    private int count;
+    private int lives;
     private float movementX, movementY;
     private float timer = 1;
     private float speed = 20;
@@ -20,18 +20,18 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        count = 0;
+        lives = 5;
         input = Keyboard.current;
 
-        SetCountText();
+        SetLivesText();
         winTextObject.SetActive(false);
         initialSpawn = new Vector3(-1.0f, -12.5f, 2.0f);
     }
 
-    void SetCountText()
+    void SetLivesText()
     {
-        countText.text = "Count: " + count.ToString();
-        if(count >= 12)
+        livesText.text = "Lives: " + lives.ToString();
+        if(lives <= 0)
         {
             winTextObject.SetActive(true);
         }
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
             transform.position = initialSpawn;
             transform.position = initialSpawn;
             rb.useGravity = true;
+            lives -= 1;
         }
 
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
@@ -87,9 +88,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
-            count = count + 1;
+            lives = lives + 1;
 
-            SetCountText();
+            SetLivesText();
         }
     }
 }
