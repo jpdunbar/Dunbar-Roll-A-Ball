@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         winTextObject.SetActive(false);
-        initialSpawn = new Vector3(0, 0.5f, 0);
+        initialSpawn = new Vector3(-1.0f, -12.5f, 2.0f);
     }
 
     void SetCountText()
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if(transform.position.y < -10 || transform.position.y > 20)
+        if(transform.position.y < -20 || transform.position.y > 20)
         {
             transform.position = initialSpawn;
             transform.position = initialSpawn;
