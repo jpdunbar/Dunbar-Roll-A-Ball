@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private float timer = 1;
     private float speed = 20;
     private float direction = -1.0f;
+    private bool lose = false;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //Restarting the player if they fall
-        if(transform.position.y < -20 || transform.position.y > 20)
+        if(transform.position.y < -20 || transform.position.y > 25)
         {
             transform.position = initialSpawn;
             transform.position = initialSpawn;
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //In the into portion
-        if (transform.position.z < 10 && transform.position.y < -10 && loseTextObject.SetActive(false))
+        if (transform.position.z < 10 && transform.position.y < -10 && lose == false)
         {
             welcomeTextObject.SetActive(true);
         }
@@ -110,10 +111,11 @@ public class PlayerController : MonoBehaviour
         if(lives <= 0)
         {
             loseTextObject.SetActive(true);
+            lose = true;
         }
 
         //Puts up the win text
-        if (transform.position.z > 148 && transform.position.y < -10 && loseTextObject.SetActive(false))
+        if (transform.position.z > 148 && transform.position.y < -10 && lose == false)
         {
             winTextObject.SetActive(true);
         }
@@ -123,17 +125,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Not using pickups for this game
-    /*
+    //Pickups are a prize
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
-            lives = lives + 1;
-
-            SetLivesText();
         }
     }
-    */
 }
